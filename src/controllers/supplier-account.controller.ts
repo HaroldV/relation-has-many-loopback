@@ -5,6 +5,7 @@ import {
   repository,
   Where,
   AnyObject,
+  relation,
 } from '@loopback/repository';
 import {
   del,
@@ -41,8 +42,9 @@ export class SupplierAccountController {
   async find(
     @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<Account>,
-  ): Promise<AnyObject> {
-    return await this.supplierRepository.find({ include: [{ relation: 'accounts' }] });
+  ): Promise<AnyObject[]> {
+    return await this.supplierRepository.find({ include: [{ relation: 'account' }] });
+
   }
 
   @post('/suppliers/{id}/accounts', {
