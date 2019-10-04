@@ -17,6 +17,6 @@ export class SupplierRepository extends DefaultCrudRepository<
   ) {
     super(Supplier, dataSource);
     this.accounts = this.createHasManyRepositoryFactoryFor('accounts', accountRepositoryGetter);
-    this.registerInclusion('accounts', this.accounts.inclusionResolver)
+    this.registerInclusionResolver('accounts', this.accounts.inclusionResolver)
   }
 }

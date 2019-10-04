@@ -21,6 +21,7 @@ import {
   Account,
 } from '../models';
 import { SupplierRepository } from '../repositories';
+import { AccountSupplierController } from './account-supplier.controller';
 
 export class SupplierAccountController {
   constructor(
@@ -42,9 +43,8 @@ export class SupplierAccountController {
   async find(
     @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<Account>,
-  ): Promise<AnyObject[]> {
-    return await this.supplierRepository.find({ include: [{ relation: 'account' }] });
-
+  ): Promise<Supplier[]> {
+    return await this.supplierRepository.find({ include: [{ relation: 'accounts' }] });
   }
 
   @post('/suppliers/{id}/accounts', {
